@@ -17,12 +17,16 @@ import LoginModal from "../modals/login.modal";
 import { useState } from "react";
 import { signOutFunc } from "@/actions/sign-out";
 import { useAuthStore } from "@/store/auth.store";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 export const Logo = () => {
+  const { t } = useTranslation("brand");
+
   return (
     <Image
       src="/logo_tatar_kitchen.png"
-      alt={siteConfig.title}
+      alt={t("title")}
       width={26}
       height={26}
       priority
@@ -32,7 +36,7 @@ export const Logo = () => {
 
 export default function Header() {
   const pathname = usePathname();
-
+  const { t } = useTranslation(["brand", "navigation", "common"]);
   const { isAuth, session, status, setAuthState } = useAuthStore();
 
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
@@ -72,7 +76,7 @@ export default function Header() {
               transition-border
               duration-200`}
             >
-              {item.label}
+              {t(`navigation:${item.translationKey}`)}
             </Link>
           </NavbarItem>
         );
@@ -84,7 +88,7 @@ export default function Header() {
       <NavbarBrand>
         <Link href="/" className="flex gap-1">
           <Logo />
-          <p className="font-bold text-inherit">{siteConfig.title}</p>
+          <p className="font-bold text-inherit">{t("brand:title")}</p>
         </Link>
       </NavbarBrand>
 
@@ -93,10 +97,16 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        {isAuth && <p>Привет, {session?.user?.email}!</p>}
+        <NavbarItem>
+          <LanguageSwitcher />
+        </NavbarItem>
+
+        {isAuth && session?.user?.email && (
+          <p>{t("common:greeting", { email: session.user.email })}</p>
+        )}
 
         {status === "loading" ? (
-          <p>Загрузка...</p>
+          <p>{t("common:status.loading")}</p>
         ) : !isAuth ? (
           <>
             <NavbarItem>
@@ -107,7 +117,7 @@ export default function Header() {
                 variant="flat"
                 onPress={() => setIsLoginOpen(true)}
               >
-                Логин
+                {t("common:auth.login")}
               </Button>
             </NavbarItem>
             <NavbarItem>
@@ -118,7 +128,7 @@ export default function Header() {
                 variant="flat"
                 onPress={() => setIsRegistrationOpen(true)}
               >
-                Регистрация
+                {t("common:auth.register")}
               </Button>
             </NavbarItem>
           </>
@@ -131,7 +141,7 @@ export default function Header() {
               variant="flat"
               onPress={handleSignOut}
             >
-              Выйти
+              {t("common:auth.logout")}
             </Button>
           </NavbarItem>
         )}

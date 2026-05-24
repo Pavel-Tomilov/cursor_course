@@ -1,0 +1,41 @@
+{
+  "actions": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "add": "Добавить",
+    "close": "Закрыть",
+    "submit": "Отправить",
+    "back": "Назад",
+    "next": "Далее",
+    "confirm": "Подтвердить",
+    "search": "Поиск",
+    "reset": "Сбросить",
+    "retry": "Повторить"
+  },
+  "auth": {
+    "login": "Логин",
+    "logout": "Выйти",
+    "register": "Регистрация"
+  },
+  "greeting": "Привет, {{email}}!",
+  "status": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "success": "Успешно",
+    "empty": "Нет данных",
+    "notFound": "Не найдено"
+  },
+  "validation": {
+    "required": "Обязательное поле",
+    "invalidEmail": "Некорректный email",
+    "minLength": "Слишком короткое значение"
+  },
+  "labels": {
+    "email": "Email",
+    "password": "Пароль",
+    "name": "Имя",
+    "description": "Описание"
+  }
+}

@@ -3,12 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/UI/layout/header";
 import { Providers } from "@/providers/provider";
-import { siteConfig } from "@/config/site.config";
-import { layoutConfig } from "@/config/layout.config";
+import Footer from "@/components/UI/layout/footer";
+import brandRu from "../../public/locales/ru/brand.json";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth/auth";
 import AppLoader from "@/hoc/app-loader";
 import Title from "@/components/UI/layout/title";
+import { getServerLanguage } from "@/utils/i18n.server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.title,
-  description: siteConfig.description
+  title: brandRu.title,
+  description: brandRu.description
 };
 
 export default async function RootLayout({
@@ -31,13 +32,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+  const language = await getServerLanguage();
 
   return (
-    <html lang="en">
+    <html lang={language}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
+        <Providers initialLanguage={language}>
           <SessionProvider session={session}>
             <AppLoader>
               <div className="flex min-h-screen flex-col justify-between">
@@ -51,12 +53,7 @@ export default async function RootLayout({
                   </main>
                 </div>
 
-                <footer
-                  className={`w-full flex items-center justify-center py-3`}
-                  style={{ height: layoutConfig.footerHeight }}
-                >
-                  <p>{siteConfig.description}</p>
-                </footer>
+                <Footer />
               </div>
             </AppLoader>
           </SessionProvider>

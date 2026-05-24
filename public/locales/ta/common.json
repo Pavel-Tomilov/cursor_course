@@ -1,0 +1,41 @@
+{
+  "actions": {
+    "save": "Саклау",
+    "cancel": "Кире кайту",
+    "delete": "Бетерү",
+    "edit": "Үзгәртү",
+    "add": "Өстәү",
+    "close": "Ябу",
+    "submit": "Җибәрү",
+    "back": "Артка",
+    "next": "Алга",
+    "confirm": "Раслау",
+    "search": "Эзләү",
+    "reset": "Ташлау",
+    "retry": "Кабатлау"
+  },
+  "auth": {
+    "login": "Керү",
+    "logout": "Чыгу",
+    "register": "Теркәлү"
+  },
+  "greeting": "Сәлам, {{email}}!",
+  "status": {
+    "loading": "Йөкләнә...",
+    "error": "Хата килде",
+    "success": "Уңышлы",
+    "empty": "Мәгълүмат юк",
+    "notFound": "Табылмады"
+  },
+  "validation": {
+    "required": "Мәҗбүри кыр",
+    "invalidEmail": "Email дөрес түгел",
+    "minLength": "Бик кыска"
+  },
+  "labels": {
+    "email": "Email",
+    "password": "Серсүз",
+    "name": "Исем",
+    "description": "Тасвирлау"
+  }
+}
